@@ -11,7 +11,7 @@ class mahasiswa extends parentClass {
         $mhs = array();
         $res = $this->mysqli->query("SELECT * FROM mahasiswa");
         while($row = $res->fetch_assoc()) {
-            array_push($mhs, array('NRP'=>$row['nrp'], 'Nama'=>$row['nama']));
+            array_push($mhs, array($row['nrp'], $row['nama']));
         }
         return $mhs;
     }

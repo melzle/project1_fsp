@@ -21,10 +21,13 @@ require_once("./mahasiswa.php");
             if (!isset($_POST['submit'])) {
                 echo "<option value=''> -- Pilih Mahasiswa -- </option>";
                 foreach ($mahasiswas as $m) {
-                    echo "<option value='$m'> -- Pilih Mahasiswa -- </option>";
+                    $nrp = $m[0];
+                    $nama = $m[1];
+
+                    echo "<option value='$nrp'>$nama</option>";
                 }
             } else {
-        
+                
             }
             ?>
         </select>
