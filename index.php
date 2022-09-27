@@ -1,3 +1,8 @@
+<?php
+require_once("./jadwal.php");
+require_once("./mahasiswa.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +12,31 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <span>haloo</span>
-    </div>
+    <form action="./" method="post">
+        <select name="selectMahasiswa" id="">
+            <?php
+            $mahasiswa = new mahasiswa();
+            $mahasiswas = $mahasiswa->getMahasiswas();
+
+            if (!isset($_POST['submit'])) {
+                echo "<option value=''> -- Pilih Mahasiswa -- </option>";
+                foreach ($mahasiswas as $m) {
+                    echo "<option value='$m'> -- Pilih Mahasiswa -- </option>";
+                }
+            } else {
+        
+            }
+            ?>
+        </select>
+        <input type="submit" value="Submit" name="submit">
+    </form>
+
+    <?php
+    if (!isset($_POST['submit'])) {
+
+    } else {
+
+    }
+    ?>
 </body>
 </html>
