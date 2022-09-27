@@ -13,21 +13,22 @@ require_once("./mahasiswa.php");
 </head>
 <body>
     <form action="./" method="post">
-        <select name="selectMahasiswa" id="">
+        <select name="selectMahasiswa" id="" required>
             <?php
             $mahasiswa = new mahasiswa();
             $mahasiswas = $mahasiswa->getMahasiswas();
 
             if (!isset($_POST['submit'])) {
-                echo "<option value=''> -- Pilih Mahasiswa -- </option>";
-                foreach ($mahasiswas as $m) {
-                    $nrp = $m[0];
-                    $nama = $m[1];
-
-                    echo "<option value='$nrp'>$nama</option>";
-                }
+                echo "<option value='' selected> -- Pilih Mahasiswa -- </option>";
             } else {
-                
+                echo "<option value=''> -- Pilih Mahasiswa -- </option>";
+            }
+
+            foreach ($mahasiswas as $m) {
+                $nrp = $m[0];
+                $nama = $m[1];
+
+                echo "<option value='$nrp'>$nama</option>";
             }
             ?>
         </select>
