@@ -21,18 +21,32 @@ require_once("./mahasiswa.php");
             if (!isset($_POST['submit'])) {
                 echo "<option value='' selected> -- Pilih Mahasiswa -- </option>";
             } else {
+                $nrpSelected = $_POST['selectMahasiswa'];
                 echo "<option value=''> -- Pilih Mahasiswa -- </option>";
             }
 
             foreach ($mahasiswas as $m) {
+                $selected = "";
                 $nrp = $m[0];
                 $nama = $m[1];
-
-                echo "<option value='$nrp'>$nama</option>";
+                if (isset($_POST['selectMahasiswa'])) {
+                    if ($nrp == $_POST['selectMahasiswa']) {
+                        $selected = "selected";
+                    }
+                }
+                
+                echo "<option value='$nrp' $selected>$nama</option>";
             }
             ?>
         </select>
         <input type="submit" value="Submit" name="submit">
+        
+        <?php
+        $jadwals = new jadwal();
+        $table = $jadwals->printTabel($nrp);
+        echo $table;
+        ?>
+
     </form>
 
     <?php

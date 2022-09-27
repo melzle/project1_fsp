@@ -19,8 +19,7 @@ class jadwal extends parentClass {
     }
 
 
-    function getJadwal() {
-        $nrp = $this->mahasiswa->nrp;
+    function getJadwal($nrp=null) {
         $stmt = $this->mysqli->prepare("SELECT * FROM jadwal WHERE nrp=?");
         $stmt->bind_param('s', $nrp);
         $stmt->execute();
@@ -36,35 +35,35 @@ class jadwal extends parentClass {
     function printTabel($nrp=null) {
         $arr_jam_kuliah = $this->jam_kuliah->getJamKuliah;
         $arr_hari = $this->hari->getHari;
-        $arr_jadwal = $this->getJadwal();
+        $arr_jadwal = array();
 
-        if (!$nrp == null) {
+        if ($nrp != null) {
+            $arr_jadwal = $this->getJadwal($nrp);
+        }
 
-        } else {
-            echo "<table><tr>";
-            foreach ($arr_hari as $h) {
-                echo "<th>$h</th>";
+        echo "<table><tr><th></th>";
+        foreach ($arr_hari as $h) {
+            echo "<th>$h</th>";
+        }
+        echo "</tr>";
+        $rowCounter = 0;
+        foreach ($arr_jam_kuliah as $jk) {
+            echo "<tr><td>$jk</td>";
+            $colCounter = 0;
+            for ($i = 0; $i < count($arr_hari); $i++) {
+                $indexer = array($rowCounter, $colCounter);
+                $check = "";
+
+                if (!array_search($indexer, $arr_jadwal, true)) {
+                    $check = "&check;";
+                }
+                echo "<td>$check</td>";
+                $colCounter++;
             }
             echo "</tr>";
-            $rowCounter = 0;
-            foreach ($arr_jam_kuliah as $jk) {
-                echo "<tr><td>$jk</td>";
-                $colCounter = 0;
-                for ($i = 0; $i < count($arr_hari); $i++) {
-                    $indexer = array($rowCounter, $colCounter);
-                    $check = "";
-
-                    if (!array_search($indexer, $arr_jadwal, true)) {
-                        $check = "&check;";
-                    }
-                    echo "<td>$check</td>";
-                    $colCounter++;
-                }
-                echo "</tr>";
-                $rowCounter++;
-            }
-            echo "</table>";
+            $rowCounter++;
         }
+        echo "</table>";
     }
 
 
