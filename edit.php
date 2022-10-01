@@ -35,6 +35,7 @@ require_once("./mahasiswa.php");
         echo "<input type='submit' value='Simpan' name='btnSimpan'>";
 
         echo "</form>";
+        // mysqli_close($)
     }
     ?>
 </body>

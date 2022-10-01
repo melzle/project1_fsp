@@ -56,6 +56,8 @@ require_once("./mahasiswa.php");
             $table = $jadwal->printTabel();
         }
         echo $table;
+
+        mysqli_close($jadwal->mysqli);
         ?>
 
     </form>
