@@ -20,10 +20,16 @@ require_once("./mahasiswa.php");
         $nrp = $_GET['nrp'];
         $mhs = new mahasiswa($nrp);
         echo "<div>Mahasiswa: " + $mhs->getNrp + " - " + $mhs->getNama + "</div>";
+        echo "<form action='./edit_proses.php' method='post'>";
+
+        $jadwal = new jadwal();
+        $tabel = $jadwal->printTabelEdit($nrp);
+        echo $tabel;
+        echo"<input type='hidden' name='nrp' value='$nrp'>";
+        echo "<input type='submit' value='Simpan' name='btnSimpan'>";
+
+        echo "</form>";
     }
     ?>
-    <form action="./" method="post">
-        
-    </form>
 </body>
 </html>

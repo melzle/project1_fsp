@@ -101,7 +101,7 @@ class jadwal extends parentClass {
                 if (!array_search($indexer, $arr_jadwal, true)) {
                     $checked = "checked";
                 }
-                echo "<td><input type='checkbox' name='jadwal[]' value='$rowCounter$colCounter' $checked</td>";
+                echo "<td><input type='checkbox' name='jadwal[]' value='$rowCounter,$colCounter' $checked</td>";
                 $colCounter++;
             }
             echo "</tr>";
@@ -110,27 +110,15 @@ class jadwal extends parentClass {
         echo "</table>";
     }
 
-    function insertJadwal() {
-        $nrp = $this->mahasiswa->nrp;
-        $idhari = $this->hari->idhari;
-        $idjam_kuliah = $this->jam_kuliah->idjam_kuliah;
-
+    function insertJadwal($nrp, $idhari, $idjam_kuliah) {
         $stmt = $this->mysqli->prepare("INSERT INTO jadwal VALUES(?,?,?)");
         $stmt->bind_param('sii', $nrp, $idhari, $idjam_kuliah);
         $stmt->execute();
     }
 
-    function updateJadwal() {
-        
-    }
-
-    function deleteJadwal() {
-        $nrp = $this->mahasiswa->nrp;
-        $idhari = $this->hari->idhari;
-        $idjam_kuliah = $this->jam_kuliah->idjam_kuliah;
-
-        $stmt = $this->mysqli->prepare("DELETE FROM jadwal WHERE nrp=? AND idhari=? AND idjam_kuliah=?");
-        $stmt->bind_param('sii', $nrp, $idhari, $idjam_kuliah);
+    function deleteJadwal($nrp) {
+        $stmt = $this->mysqli->prepare("DELETE FROM jadwal WHERE nrp=?");
+        $stmt->bind_param('s', $nrp);
         $stmt->execute();
     }
 }
