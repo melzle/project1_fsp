@@ -14,7 +14,7 @@ class mahasiswa extends parentClass {
         } else {
             $mhs = $this->getMahasiswa($nrp);
             $this->nrp = $mhs[0];
-            $this->nrp = $mhs[1];
+            $this->nama = $mhs[1];
         }
     }
 
@@ -49,6 +49,10 @@ class mahasiswa extends parentClass {
 
     function getNama() {
         return $this->nama;
+    }
+
+    function setNama($nama) {
+        $this->nrp = $nama;
     }
 }
 ?>

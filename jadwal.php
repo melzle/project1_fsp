@@ -1,125 +1,58 @@
 <?php
 require_once("./parent.php");
-require_once("./mahasiswa.php");
-require_once("./jam_kuliah.php");
-require_once("./jadwal.php");
-require_once("./hari.php");
 
-class jadwal extends parentClass {
-    private $mahasiswa;
-    private $jam_kuliah;
-    private $hari;
+class mahasiswa extends parentClass {
+    private $nrp;
+    private $nama;
 
-    public function __construct($mahasiswa=null, $jam_kuliah=null, $hari=null)
+    public function __construct($nrp = null)
     {
         parentClass::__construct();
-
-        if ($mahasiswa == null) {
-            $this->mahasiswa = new mahasiswa;
+        if ($nrp == null) {
+            $this->nrp = "";
+            $this->nama = "";
         } else {
-            $this->mahasiswa = $mahasiswa;
-        }
-
-        if ($jam_kuliah == null) {
-            $this->jam_kuliah = new jam_kuliah;
-        } else {
-            $this->jam_kuliah = $jam_kuliah;
-        }
-
-        if ($hari == null) {
-            $this->$hari = new hari;
-        } else {
-            $this->$hari = $hari;
+            $mhs = $this->getMahasiswa($nrp);
+            $this->nrp = $mhs[0];
+            $this->nama = $mhs[1];
         }
     }
 
-    function getJadwal($nrp) {
-        $stmt = $this->mysqli->prepare("SELECT * FROM jadwal WHERE nrp=?");
+    function getMahasiswas() {
+        $mhs = array();
+        $res = $this->mysqli->query("SELECT * FROM mahasiswa");
+        while($row = $res->fetch_assoc()) {
+            array_push($mhs, array($row['nrp'], $row['nama']));
+        }
+        return $mhs;
+    }
+
+    function getMahasiswa($nrp) {
+        $mhs = array();
+        $stmt = $this->mysqli->prepare("SELECT * FROM mahasiswa WHERE nrp=?");
         $stmt->bind_param('s', $nrp);
         $stmt->execute();
         $res = $stmt->get_result();
-
-        $array_jadwal = array();
-        while ($row = $res->fetch_assoc()) {
-            array_push($array_jadwal, array((int)$row['idjam_kuliah'], (int)$row['idhari']));
+        while($row = $res->fetch_assoc()) {
+            $mhs = array($row['nrp'], $row['nama']);
         }
-        return $array_jadwal;
+        return $mhs;
     }
 
-    function printTabel($nrp=null) {
-        $arr_jam_kuliah = $this->jam_kuliah->getJamKuliah;
-        $arr_hari = $this->hari->getHari;
-        $arr_jadwal = array();
-
-        if ($nrp != null) {
-            $arr_jadwal = $this->getJadwal($nrp);
-        }
-
-        echo "<table><tr><th></th>";
-        foreach ($arr_hari as $h) {
-            echo "<th>$h</th>";
-        }
-        echo "</tr>";
-        $rowCounter = 0;
-        foreach ($arr_jam_kuliah as $jk) {
-            echo "<tr><td>$jk</td>";
-            $colCounter = 0;
-            for ($i = 0; $i < count($arr_hari); $i++) {
-                $indexer = array($rowCounter, $colCounter);
-                $check = "";
-
-                if (!array_search($indexer, $arr_jadwal, true)) {
-                    $check = "&check;";
-                }
-                echo "<td>$check</td>";
-                $colCounter++;
-            }
-            echo "</tr>";
-            $rowCounter++;
-        }
-        echo "</table>";
+    function getNrp() {
+        return $this->nrp;
     }
 
-    function printTabelEdit($nrp) {
-        $arr_jam_kuliah = $this->jam_kuliah->getJamKuliah;
-        $arr_hari = $this->hari->getHari;
-        $arr_jadwal = $this->getJadwal($nrp);
-
-        echo "<table><tr><th></th>";
-        foreach ($arr_hari as $h) {
-            echo "<th>$h</th>";
-        }
-        echo "</tr>";
-        $rowCounter = 0;
-        foreach ($arr_jam_kuliah as $jk) {
-            echo "<tr><td>$jk</td>";
-            $colCounter = 0;
-            for ($i = 0; $i < count($arr_hari); $i++) {
-                $indexer = array($rowCounter, $colCounter);
-                $checked = "";
-
-                if (!array_search($indexer, $arr_jadwal, true)) {
-                    $checked = "checked";
-                }
-                echo "<td><input type='checkbox' name='jadwal[]' value='$rowCounter,$colCounter' $checked</td>";
-                $colCounter++;
-            }
-            echo "</tr>";
-            $rowCounter++;
-        }
-        echo "</table>";
+    function setNrp($nrp) {
+        $this->nrp = $nrp;
     }
 
-    function insertJadwal($nrp, $idhari, $idjam_kuliah) {
-        $stmt = $this->mysqli->prepare("INSERT INTO jadwal VALUES(?,?,?)");
-        $stmt->bind_param('sii', $nrp, $idhari, $idjam_kuliah);
-        $stmt->execute();
+    function getNama() {
+        return $this->nama;
     }
 
-    function deleteJadwal($nrp) {
-        $stmt = $this->mysqli->prepare("DELETE FROM jadwal WHERE nrp=?");
-        $stmt->bind_param('s', $nrp);
-        $stmt->execute();
+    function setNama($nama) {
+        $this->nrp = $nama;
     }
 }
 ?>
