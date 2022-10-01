@@ -13,13 +13,27 @@ class jadwal extends parentClass {
     public function __construct($mahasiswa=null, $jam_kuliah=null, $hari=null)
     {
         parentClass::__construct();
-        $this->mahasiswa = $mahasiswa;
-        $this->jam_kuliah = $jam_kuliah;
-        $this->$hari = $hari;
+
+        if ($mahasiswa == null) {
+            $this->mahasiswa = new mahasiswa;
+        } else {
+            $this->mahasiswa = $mahasiswa;
+        }
+
+        if ($jam_kuliah == null) {
+            $this->jam_kuliah = new jam_kuliah;
+        } else {
+            $this->jam_kuliah = $jam_kuliah;
+        }
+
+        if ($hari == null) {
+            $this->$hari = new hari;
+        } else {
+            $this->$hari = $hari;
+        }
     }
 
-
-    function getJadwal($nrp=null) {
+    function getJadwal($nrp) {
         $stmt = $this->mysqli->prepare("SELECT * FROM jadwal WHERE nrp=?");
         $stmt->bind_param('s', $nrp);
         $stmt->execute();
@@ -66,6 +80,35 @@ class jadwal extends parentClass {
         echo "</table>";
     }
 
+    function printTabelEdit($nrp) {
+        $arr_jam_kuliah = $this->jam_kuliah->getJamKuliah;
+        $arr_hari = $this->hari->getHari;
+        $arr_jadwal = $this->getJadwal($nrp);
+
+        echo "<table><tr><th></th>";
+        foreach ($arr_hari as $h) {
+            echo "<th>$h</th>";
+        }
+        echo "</tr>";
+        $rowCounter = 0;
+        foreach ($arr_jam_kuliah as $jk) {
+            echo "<tr><td>$jk</td>";
+            $colCounter = 0;
+            for ($i = 0; $i < count($arr_hari); $i++) {
+                $indexer = array($rowCounter, $colCounter);
+                $checked = "";
+
+                if (!array_search($indexer, $arr_jadwal, true)) {
+                    $checked = "checked";
+                }
+                echo "<td><input type='checkbox' name='jadwal[]' value='$rowCounter$colCounter' $checked</td>";
+                $colCounter++;
+            }
+            echo "</tr>";
+            $rowCounter++;
+        }
+        echo "</table>";
+    }
 
     function insertJadwal() {
         $nrp = $this->mahasiswa->nrp;

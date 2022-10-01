@@ -42,18 +42,23 @@ require_once("./mahasiswa.php");
         <input type="submit" value="Submit" name="submit">
         
         <?php
-        $jadwals = new jadwal();
-        $table = $jadwals->printTabel($nrp);
+        $jadwal = new jadwal();
+        if (isset($_POST['selectMahasiswa'])) {
+            $table = $jadwal->printTabel($nrp);
+        } else {
+            $table = $jadwal->printTabel();
+        }
         echo $table;
         ?>
 
     </form>
 
     <?php
-    if (!isset($_POST['submit'])) {
-
+    if (!isset($_POST['selectMahasiswa'])) {
+        echo "<button type='button' disabled>Edit</button>";
     } else {
-
+        echo "<form action='./edit.php?nrp=$nrp' method='get'>";
+        echo "<input type='submit' value='Edit' name='btnedit'></form>";
     }
     ?>
 </body>
