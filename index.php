@@ -11,10 +11,41 @@ require_once("./mahasiswa.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            
         }
+        table, th, td, tr {
+            border: 1px solid #f2f5f7;
+            border-collapse: collapse;
+            text-align:center;
+            padding: 5px 10px;
+            
+          
+        }
+
+        .table, th{
+            background: #a91b60;
+            font-weight:normal;
+            color: white;
+
+        }
+
+        .table, td{
+            background: #f9f9f9;
+            
+        }
+
+        tr:nth-child(even) td{
+            background: #f1f1f1 !important;
+
+        }
+
+    
+        
     </style>
 </head>
 <body>
