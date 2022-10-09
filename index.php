@@ -27,14 +27,14 @@ require_once("./mahasiswa.php");
           
         }
 
-        .table, th{
+        th{
             background: #a91b60;
             font-weight:normal;
             color: white;
 
         }
 
-        .table, td{
+        td{
             background: #f9f9f9;
             
         }
@@ -50,6 +50,7 @@ require_once("./mahasiswa.php");
 </head>
 <body>
     <form action="./" method="get">
+        <div style="margin-bottom: 15px;">
         <select name="nrp" id="" required>
             <?php
             $mahasiswa = new mahasiswa();
@@ -77,6 +78,8 @@ require_once("./mahasiswa.php");
             ?>
         </select>
         <input type="submit" value="Submit">
+        </div>
+
         
         <?php
         $jadwal = new jadwal();
@@ -92,6 +95,7 @@ require_once("./mahasiswa.php");
         ?>
 
     </form>
+    <div style="margin-top: 15px;">
 
     <?php
     if (!isset($_GET['nrp'])) {
@@ -102,5 +106,6 @@ require_once("./mahasiswa.php");
         echo "<input type='submit' value='Edit'></form>";
     }
     ?>
+    </div>
 </body>
 </html>
