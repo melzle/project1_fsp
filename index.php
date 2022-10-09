@@ -18,13 +18,13 @@ require_once("./mahasiswa.php");
     </style>
 </head>
 <body>
-    <form action="./" method="post">
+    <form action="./" method="get">
         <select name="selectMahasiswa" id="" required>
             <?php
             $mahasiswa = new mahasiswa();
             $mahasiswas = $mahasiswa->getMahasiswas();
 
-            if (!isset($_POST['submit'])) {
+            if (!isset($_GET['selectMahasiswa'])) {
                 echo "<option value='' selected hidden> -- Pilih Mahasiswa -- </option>";
             } else {
                 $nrpSelected = $_POST['selectMahasiswa'];
@@ -35,8 +35,8 @@ require_once("./mahasiswa.php");
                 $selected = "";
                 $nrp = $m[0];
                 $nama = $m[1];
-                if (isset($_POST['selectMahasiswa'])) {
-                    if ($nrp == $_POST['selectMahasiswa']) {
+                if (isset($_GET['selectMahasiswa'])) {
+                    if ($nrp == $_GET['selectMahasiswa']) {
                         $selected = "selected";
                     }
                 }
@@ -45,29 +45,29 @@ require_once("./mahasiswa.php");
             }
             ?>
         </select>
-        <input type="submit" value="Submit" name="submit">
+        <input type="submit" value="Submit">
         
         <?php
         $jadwal = new jadwal();
-        if (isset($_POST['selectMahasiswa'])) {
-            $table = $jadwal->printTabel($_POST['selectMahasiswa']);
+        if (isset($_GET['selectMahasiswa'])) {
+            $table = $jadwal->printTabel($_GET['selectMahasiswa']);
             // echo 'select mhs';
         } else {
             $table = $jadwal->printTabel();
         }
         echo $table;
 
-        mysqli_close($jadwal->mysqli);
+        // mysqli_close($jadwal->mysqli);
         ?>
 
     </form>
 
     <?php
-    if (!isset($_POST['selectMahasiswa'])) {
+    if (!isset($_GET['selectMahasiswa'])) {
         echo "<button type='button' disabled>Edit</button>";
     } else {
         echo "<form action='./edit.php' method='get'>";
-        echo "<input type='hidden' name='nrp' value='".$_POST['selectMahasiswa']."'>";
+        echo "<input type='hidden' name='nrp' value='".$_GET['selectMahasiswa']."'>";
         echo "<input type='submit' value='Edit'></form>";
     }
     ?>
