@@ -19,15 +19,15 @@ require_once("./mahasiswa.php");
 </head>
 <body>
     <form action="./" method="get">
-        <select name="selectMahasiswa" id="" required>
+        <select name="nrp" id="" required>
             <?php
             $mahasiswa = new mahasiswa();
             $mahasiswas = $mahasiswa->getMahasiswas();
 
-            if (!isset($_GET['selectMahasiswa'])) {
+            if (!isset($_GET['nrp'])) {
                 echo "<option value='' selected hidden> -- Pilih Mahasiswa -- </option>";
             } else {
-                $nrpSelected = $_POST['selectMahasiswa'];
+                $nrpSelected = $_GET['nrp'];
                 echo "<option value='' hidden> -- Pilih Mahasiswa -- </option>";
             }
 
@@ -35,8 +35,8 @@ require_once("./mahasiswa.php");
                 $selected = "";
                 $nrp = $m[0];
                 $nama = $m[1];
-                if (isset($_GET['selectMahasiswa'])) {
-                    if ($nrp == $_GET['selectMahasiswa']) {
+                if (isset($_GET['nrp'])) {
+                    if ($nrp == $_GET['nrp']) {
                         $selected = "selected";
                     }
                 }
@@ -49,8 +49,8 @@ require_once("./mahasiswa.php");
         
         <?php
         $jadwal = new jadwal();
-        if (isset($_GET['selectMahasiswa'])) {
-            $table = $jadwal->printTabel($_GET['selectMahasiswa']);
+        if (isset($_GET['nrp'])) {
+            $table = $jadwal->printTabel($_GET['nrp']);
             // echo 'select mhs';
         } else {
             $table = $jadwal->printTabel();
@@ -63,11 +63,11 @@ require_once("./mahasiswa.php");
     </form>
 
     <?php
-    if (!isset($_GET['selectMahasiswa'])) {
+    if (!isset($_GET['nrp'])) {
         echo "<button type='button' disabled>Edit</button>";
     } else {
         echo "<form action='./edit.php' method='get'>";
-        echo "<input type='hidden' name='nrp' value='".$_GET['selectMahasiswa']."'>";
+        echo "<input type='hidden' name='nrp' value='".$_GET['nrp']."'>";
         echo "<input type='submit' value='Edit'></form>";
     }
     ?>
