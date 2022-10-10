@@ -17,7 +17,9 @@ require_once("class/mahasiswa.php");
     <form action="./" method="get">
         <div style="margin-bottom: 15px; margin-top:15px;">
         <ul class="breadcrumb">
+
             <li class="title">Jadwal Kuliah</li>
+
         </ul>
         <!-- <p class="title">Jadwal Kuliah</p> -->
         <select name="nrp" id="" required>
