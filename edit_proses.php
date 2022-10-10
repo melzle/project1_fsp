@@ -1,6 +1,6 @@
 <?php
-require_once("./jadwal.php");
-require_once("./mahasiswa.php");
+require_once("class/jadwal.php");
+require_once("class/mahasiswa.php");
 
 // print_r($_POST);
 

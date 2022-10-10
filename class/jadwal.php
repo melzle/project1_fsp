@@ -1,9 +1,9 @@
 <?php
-require_once("./parent.php");
-require_once("./mahasiswa.php");
-require_once("./jam_kuliah.php");
-require_once("./jadwal.php");
-require_once("./hari.php");
+require_once("class/parent.php");
+require_once("class/mahasiswa.php");
+require_once("class/jam_kuliah.php");
+require_once("class/jadwal.php");
+require_once("class/hari.php");
 
 class jadwal extends parentClass {
     private $mahasiswa;
@@ -71,7 +71,9 @@ class jadwal extends parentClass {
         echo "</tr>";
         $rowCounter = 1;
         foreach ($arr_jam_kuliah as $jk) {
-            echo "<tr><td>".$jk['jam_mulai']." - ".$jk['jam_selesai']."</td>";
+            $jam_mulai = date_create($jk['jam_mulai']);
+            $jam_selesai = date_create($jk['jam_selesai']);
+            echo "<tr><td>". date_format($jam_mulai, 'H:i') ." - ". date_format($jam_selesai, 'H:i') ."</td>";
             $colCounter = 1;
             for ($i = 0; $i < count($arr_hari); $i++) {
                 $indexer = array($rowCounter, $colCounter);
@@ -106,7 +108,9 @@ class jadwal extends parentClass {
         echo "</tr>";
         $rowCounter = 1;
         foreach ($arr_jam_kuliah as $jk) {
-            echo "<tr><td>".$jk['jam_mulai']." - ".$jk['jam_selesai']."</td>";
+            $jam_mulai = date_create($jk['jam_mulai']);
+            $jam_selesai = date_create($jk['jam_selesai']);
+            echo "<tr><td>". date_format($jam_mulai, 'H:i') ." - ". date_format($jam_selesai, 'H:i') ."</td>";
             $colCounter = 1;
             for ($i = 0; $i < count($arr_hari); $i++) {
                 $indexer = array($rowCounter, $colCounter);

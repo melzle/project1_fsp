@@ -1,6 +1,6 @@
 <?php
-require_once("./jadwal.php");
-require_once("./mahasiswa.php");
+require_once("class/jadwal.php");
+require_once("class/mahasiswa.php");
 ?>
 
 <!DOCTYPE html>
@@ -9,48 +9,17 @@ require_once("./mahasiswa.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
-        * {
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-            
-        }
-        table, th, td, tr {
-            border: 1px solid #f2f5f7;
-            border-collapse: collapse;
-            text-align:center;
-            padding: 5px 10px;
-            
-          
-        }
-
-        th{
-            background: #a91b60;
-            font-weight:normal;
-            color: white;
-
-        }
-
-        td{
-            background: #f9f9f9;
-            
-        }
-
-        tr:nth-child(even) td{
-            background: #f1f1f1 !important;
-
-        }
-
-    
-        
-    </style>
+    <title>Jadwal Kuliah</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="container">
     <form action="./" method="get">
-        <div style="margin-bottom: 15px;">
+        <div style="margin-bottom: 15px; margin-top:15px;">
+        <ul class="breadcrumb">
+            <li class="title">Jadwal Kuliah</li>
+        </ul>
+        <!-- <p class="title">Jadwal Kuliah</p> -->
         <select name="nrp" id="" required>
             <?php
             $mahasiswa = new mahasiswa();
@@ -77,7 +46,7 @@ require_once("./mahasiswa.php");
             }
             ?>
         </select>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" class="btn-primary" style="margin-left: 10px;">
         </div>
 
         
@@ -99,13 +68,14 @@ require_once("./mahasiswa.php");
 
     <?php
     if (!isset($_GET['nrp'])) {
-        echo "<button type='button' disabled>Edit</button>";
+        echo "<button type='button' 'btn-primary' disabled>Edit Jadwal</button>";
     } else {
         echo "<form action='./edit.php' method='get'>";
         echo "<input type='hidden' name='nrp' value='".$_GET['nrp']."'>";
-        echo "<input type='submit' value='Edit'></form>";
+        echo "<input type='submit' value='Edit Jadwal' class='btn-primary'></form>";
     }
     ?>
+    </div>
     </div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
-require_once("./jadwal.php");
-require_once("./mahasiswa.php");
+require_once("class/jadwal.php");
+require_once("class/mahasiswa.php");
 ?>
 
 <!DOCTYPE html>
@@ -9,43 +9,16 @@ require_once("./mahasiswa.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-       @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
-        * {
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-            
-        }
-        table, th, td, tr {
-            border: 1px solid #f2f5f7;
-            border-collapse: collapse;
-            text-align:center;
-            padding: 5px 10px;
-            
-        
-        }
-
-        th{
-            background: #a91b60;
-            font-weight:normal;
-            color: white;
-
-        }
-
-        td{
-            background: #f9f9f9;
-            
-        }
-
-        tr:nth-child(even) td{
-            background: #f1f1f1 !important;
-
-        }
-    </style>
+    <title>Edit Jadwal</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+    <ul class="breadcrumb">
+        <li ><a href="#" class="title">Jadwal Kuliah</a></li>
+        <li>Edit Jadwal</li>
+    </ul>
+    
     <?php
     if (!isset($_GET['nrp'])) {
         // header("location: index.php");
@@ -62,12 +35,13 @@ require_once("./mahasiswa.php");
         echo"<input type='hidden' name='nrp' value='$nrp'>";
         echo'</div>';
         echo '<div style="margin-top: 15px;">';
-        echo "<input type='submit' value='Simpan' name='btnSimpan'>";
+        echo "<input type='submit' value='Simpan' name='btnSimpan' class='btn-primary'>";
         echo "</form>";
         echo'</div>';
 
         // mysqli_close($)
     }
     ?>
+    </div>
 </body>
 </html>

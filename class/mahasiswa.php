@@ -1,5 +1,5 @@
 <?php
-require_once("./parent.php");
+require_once("class/parent.php");
 
 class mahasiswa extends parentClass {
     private $nrp;
