@@ -17,6 +17,6 @@ if (!isset($_POST['jadwal'])) {
         $arr_jadwal = explode(",", $j);
         $obj_jadwal->insertJadwal($nrp, (int)$arr_jadwal[1], (int)$arr_jadwal[0]);
     }
-    header("location: ./index.php?nrp=$nrp");
+    header("location: ./edit.php?nrp=$nrp");
 }
 ?>

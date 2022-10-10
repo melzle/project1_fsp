@@ -46,7 +46,7 @@ require_once("class/mahasiswa.php");
             }
             ?>
         </select>
-        <input type="submit" value="Submit" class="btn-primary" style="margin-left: 10px;">
+        <input type="submit" value="Pilih" class="btn-primary" style="margin-left: 10px;">
         </div>
 
         
@@ -68,11 +68,11 @@ require_once("class/mahasiswa.php");
 
     <?php
     if (!isset($_GET['nrp'])) {
-        echo "<button type='button' 'btn-primary' disabled>Edit Jadwal</button>";
+        echo "<button type='button' class='btn-primary-disabled' >Ubah Jadwal</button>";
     } else {
         echo "<form action='./edit.php' method='get'>";
         echo "<input type='hidden' name='nrp' value='".$_GET['nrp']."'>";
-        echo "<input type='submit' value='Edit Jadwal' class='btn-primary'></form>";
+        echo "<input type='submit' value='Ubah Jadwal' class='btn-primary'></form>";
     }
     ?>
     </div>

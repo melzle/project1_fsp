@@ -14,11 +14,6 @@ require_once("class/mahasiswa.php");
 </head>
 <body>
     <div class="container">
-    <ul class="breadcrumb">
-        <li ><a href="#" class="title">Jadwal Kuliah</a></li>
-        <li>Edit Jadwal</li>
-    </ul>
-    
     <?php
     if (!isset($_GET['nrp'])) {
         // header("location: index.php");
@@ -26,6 +21,10 @@ require_once("class/mahasiswa.php");
     } else {
         $nrp = $_GET['nrp'];
         $mhs = new mahasiswa($nrp);
+        echo "<ul class='breadcrumb'>";
+        echo "<li><a href='index.php?nrp=$nrp' class='title'>Jadwal Kuliah</a></li>";
+        echo "<li>Ubah Jadwal</li></ul>";
+    
         echo "<div>Mahasiswa: ".$mhs->getNrp()." - ".$mhs->getNama()."</div>";
         echo '<div style="margin-top: 15px;">';
         echo "<form action='./edit_proses.php' method='post'>";

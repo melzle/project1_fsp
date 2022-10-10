@@ -47,6 +47,13 @@ tr:nth-child(even) td{
     border-style: none;
     color: white;
 }
+.btn-primary-disabled{
+    padding: 5px 12px 5px 12px;
+    background-color: #ffadc3;
+    border-radius: 5px;
+    border-style: none;
+    color: white;
+}
 ul.breadcrumb {
     list-style: none;
     margin-left: 0px;
@@ -55,7 +62,6 @@ ul.breadcrumb {
 }
 ul.breadcrumb li {
     display: inline;
-    
 }
 ul.breadcrumb li a {
     text-decoration: none;
@@ -66,6 +72,6 @@ ul.breadcrumb li+li:before {
     content: ">\00a0";
 }
 ul.breadcrumb li a:hover {
-    color: #01447e;
+    color: #df4870;
     text-decoration: underline;
 }
