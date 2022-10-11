@@ -58,6 +58,13 @@ tr:nth-child(even) td {
     border-radius: 5px;
     border-style: none;
     color: white;
+    transition: 0.5s ease;
+}
+
+.btn-primary:hover {
+    cursor: pointer;
+    transition: 0.5s ease;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;    
 }
 
 .btn-primary-disabled {
@@ -72,7 +79,6 @@ ul.breadcrumb {
     list-style: none;
     margin-left: 0px;
     padding-left: 0px;
-    /* background-color: #eee; */
 }
 
 ul.breadcrumb li {
