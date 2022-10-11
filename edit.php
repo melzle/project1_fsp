@@ -16,7 +16,7 @@ require_once("class/mahasiswa.php");
     <div class="container">
     <?php
     if (!isset($_GET['nrp'])) {
-        // header("location: index.php");
+        header("location: index.php");
         die();
     } else {
         $nrp = $_GET['nrp'];
@@ -37,8 +37,6 @@ require_once("class/mahasiswa.php");
         echo "<input type='submit' value='Simpan' name='btnSimpan' class='btn-primary'>";
         echo "</form>";
         echo'</div>';
-
-        // mysqli_close($)
     }
     ?>
     </div>

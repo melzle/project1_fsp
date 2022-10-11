@@ -56,13 +56,10 @@ require_once("class/mahasiswa.php");
         $jadwal = new jadwal();
         if (isset($_GET['nrp'])) {
             $table = $jadwal->printTabel($_GET['nrp']);
-            // echo 'select mhs';
         } else {
             $table = $jadwal->printTabel();
         }
         echo $table;
-
-        // mysqli_close($jadwal->mysqli);
         ?>
 
     </form>
