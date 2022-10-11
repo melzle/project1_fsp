@@ -2,8 +2,6 @@
 require_once("class/jadwal.php");
 require_once("class/mahasiswa.php");
 
-// print_r($_POST);
-
 if (!isset($_POST['jadwal'])) {
     header("location: ./index.php");
 } else {

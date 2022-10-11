@@ -43,8 +43,6 @@ class jadwal extends parentClass {
         while ($row = $res->fetch_assoc()) {
             array_push($array_jadwal, array((int)$row['idjam_kuliah'], (int)$row['idhari']));
         }
-        // echo "print getjadwal $nrp: ";
-        // print_r($array_jadwal);
         return $array_jadwal;
     }
 
@@ -56,15 +54,9 @@ class jadwal extends parentClass {
 
         if ($nrp != null) {
             $arr_jadwal = $this->getJadwal($nrp);
-            // echo "ngeprint dari printtabel: ";
-            // print_r($this->getJadwal($11nrp));
         }
 
-        // echo "arr jdwal";
-        // print_r($arr_jadwal);
-
         echo "<table><tr><th></th>";
-        // print_r($arr_hari);
         foreach ($arr_hari as $h) {
             echo "<th>$h</th>";
         }
@@ -77,11 +69,8 @@ class jadwal extends parentClass {
             $colCounter = 1;
             for ($i = 0; $i < count($arr_hari); $i++) {
                 $indexer = array($rowCounter, $colCounter);
-                // echo('indexer');
-                // print_r($indexer);
                 $check = "";
 
-                // echo(array_search($indexer, $arr_jadwal[0], true));
                 if (in_array($indexer, $arr_jadwal, true)) {
                     $check = "&check;";
                 }
@@ -99,7 +88,6 @@ class jadwal extends parentClass {
         $hari = new hari();
         $arr_hari = $hari->getHari();
         $arr_jadwal = $this->getJadwal($nrp);
-        // print_r($arr_jadwal);
 
         echo "<table><tr><th></th>";
         foreach ($arr_hari as $h) {

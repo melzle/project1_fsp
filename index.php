@@ -21,7 +21,6 @@ require_once("class/mahasiswa.php");
             <li class="title">Jadwal Kuliah</li>
 
         </ul>
-        <!-- <p class="title">Jadwal Kuliah</p> -->
         <select name="nrp" id="" required>
             <?php
             $mahasiswa = new mahasiswa();
